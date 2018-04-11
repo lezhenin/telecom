@@ -24,12 +24,16 @@ max_corr_ind = (corr == max(corr));
 figure(figure_properties{:})
 stem(lag, corr, 'LineWidth', lw)
 xticks(lag)
+xlabel('Lag')
+ylabel('Correlation')
 set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
 stem(pos, signal, 'LineWidth', lw)
 xticks(pos)
+xlabel('t')
+ylabel('s(t)')
 set(gca, 'FontSize', fs)
 
 
@@ -43,6 +47,8 @@ for i = 1:length(max_corr_ind)
         stem(pos, signal, 'LineWidth', lw)
         stem(pos, lagged_sync, 'r.', 'LineWidth', lw)
         xticks(pos)
+        xlabel('t')
+        ylabel('s(t)')
         set(gca, 'FontSize', fs)
     end
 end
