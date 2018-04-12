@@ -39,13 +39,17 @@ set(gca, 'FontSize', fs)
 
 for i = 1:length(max_corr_ind)
     if (max_corr_ind(i))
-        lagged_sync = zeros(1, signal_len);
         sync_range = (lag(i):(lag(i)+sync_len-1)) + 1;
-        lagged_sync(sync_range) = sync;
+        data_range = sync_range(end)+1:sync_range(end)+8;
+        if (data_range(end) > signal_len)
+            data_range = data_range(1):signal_len;
+        end
         figure(figure_properties{:})
         hold on
         stem(pos, signal, 'LineWidth', lw)
-        stem(pos, lagged_sync, 'r.', 'LineWidth', lw)
+        stem(pos(sync_range), sync, 'r*', 'LineWidth', lw)
+        stem(pos(data_range), signal(data_range), 'g*', 'LineWidth', lw)
+        legend('Signal', 'Sync', 'Data')
         xticks(pos)
         xlabel('t')
         ylabel('s(t)')
