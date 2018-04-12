@@ -20,6 +20,7 @@ plot(t, y, 'r', 'LineWidth', lw)
 plot(t, x, 'b', 'LineWidth', lw)
 xlim([min(t), max(t)]);
 xlabel('t (s)')
+legend('Noisy sginal', 'Signal')
 set(gca, 'FontSize', fs)
 
 X = fftshift(fft(x));
@@ -32,12 +33,14 @@ plot(f, abs(Y), 'r', 'LineWidth', lw)
 plot(f, abs(X), 'b', 'LineWidth', lw)
 xlim([-Fs/2, Fs/2]);
 xlabel('f (Hz)')
+legend('Noisy sginal spectrum', 'Signal spectrum')
 set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
 plot(f, abs(Y), 'r', 'LineWidth', lw)
 plot(f, abs(X), 'b', 'LineWidth', lw)
+legend('Noisy sginal spectrum', 'Signal spectrum')
 xlim([min(-F0*2), max(F0*2)]);
 xlabel('f (Hz)')
 set(gca, 'FontSize', fs)
@@ -63,6 +66,7 @@ plot(t, g, 'm', 'LineWidth', lw)
 plot(t, x, 'b', 'LineWidth', lw)
 xlim([min(t), max(t)]);
 xlabel('t (s)')
+legend('De-noised sginal', 'Signal')
 set(gca, 'FontSize', fs)
 
 G = fftshift(fft(g));
@@ -73,6 +77,7 @@ plot(f, abs(G), 'm', 'LineWidth', lw)
 plot(f, abs(X), 'b', 'LineWidth', lw)
 xlim([-Fs/2, Fs/2]);
 xlabel('f (Hz)')
+legend('De-noised sginal spectrum', 'Signal spectrum')
 set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
@@ -81,4 +86,5 @@ plot(f, abs(G), 'm', 'LineWidth', lw)
 plot(f, abs(X), 'b', 'LineWidth', lw)
 xlim([min(-F0*2), max(F0*2)]);
 xlabel('f (Hz)')
+legend('De-noised sginal spectrum', 'Signal spectrum')
 set(gca, 'FontSize', fs)

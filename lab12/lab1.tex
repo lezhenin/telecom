@@ -1,6 +1,6 @@
 \documentclass[a4paper,14pt]{extarticle}
 
-\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{graphicx}
@@ -80,15 +80,26 @@
 \end{titlepage}
 
 \section{Цель работы.}
-
-Познакомиться со средствами генерации и визуализации простых сигналов.
+\begin{itemize}
+\item Познакомиться со средствами генерации и визуализации простых сигналов. 
+\item Получить представление о спектрах телекоммуникационных сигналов.
+\end{itemize}
 
 \section{Постановка задачи.} 
 
-В командном окне MATLAB и в среде Simulink
-промоделировать синусоидальный и прямоугольный сигналы с раз-
+\begin{itemize}
+
+\item Промоделировать синусоидальный и прямоугольный сигналы с раз-
 личными параметрами. Получить их спектры. Вывести на график.
 
+\item С помощью функции корреляции найдите позицию синхро-
+посылки [101] в сигнале [0001010111000010]. Получите пакет
+данных, если известно, что его длина составляет 8 бит без
+учета синхропосылки. Вычислите корреляцию прямым мето-
+дом, воспользуйтесь алгоритмом быстрой корреляции, сравни-
+те время работы обоих алгоритмов.
+
+\end{itemize}
 \section{Ход работы.}
 
 \subsection{Ряд и интеграл Фурье.}
@@ -227,7 +238,7 @@ x_d(t) = x(t) \cdot \text{Ш}(t, T_s).
 
 \subsection{Спектры некоторых простых сигналов.}
 
-В ходе работы была выполнена генерация нескольких наборов данных, состоящих из 512 отсчетов. Каждый набор представляет сигнал определенного вида. Для каждого сигнала с помощью алгоритма быстрого преобразования Фурье был найден спектр. Сигналы конечны и дискретны, поэтому полученные спектры периодичны и имеют искажения обусловленные сверткой с функцией $\sinc(\pi f)$. На рисунках ниже преобразование приведено на интервале $[-T_s / 2, T_s/2]$, что соответствует одному периоду.  
+В ходе работы были промоделированы сигналы различного вида. Для каждого сигнала с помощью алгоритма быстрого преобразования Фурье был найден спектр. Сигналы конечны и дискретны, поэтому полученные спектры периодичны и имеют искажения обусловленные сверткой с функцией $\sinc(\pi f)$. На рисунках ниже преобразование приведено на интервале $[-T_s / 2, T_s/2]$, что соответствует одному периоду.  
 
 \subsubsection{Гармонический сигнал.}
 Спектр гармонического сигнала представляет собой набор дискретных отсчетов на частоте, которая совпадает с частой гармоник в сигнале. Значение спектра в отсчетах зависит от амплитуды соответствующих гармоник. 
@@ -235,6 +246,7 @@ x_d(t) = x(t) \cdot \text{Ш}(t, T_s).
 На рисунке \ref{sin_x} приведен гармонический сигнал, описываемый выражением $x(t) = \sin(2 \pi f_0 t) + 0.2 \, \cos(2 \pi f_1 t), ~ f_0 = 10\text{Гц}, ~ f_1 = 2\text{Гц}$. На рисунке \ref{sin_s} приведен амплитудный спектр $|\Phi(f)|$ данного сигнала.	
 
 \begin{figure}[H]
+\centering
 \includegraphics[width=0.95\textwidth]{sin_x.eps}
 \captionsetup{justification=centering,margin=2cm}
 \caption{Гармонический сигнал вида $x(t) = \sin(2 \pi \cdot 10 t) + 0.2 \, \cos(2 \pi \cdot 2 t)$.}
@@ -242,6 +254,7 @@ x_d(t) = x(t) \cdot \text{Ш}(t, T_s).
 \end{figure}
 
 \begin{figure}[H]
+\centering
 \includegraphics[width=0.95\textwidth]{sin_s.eps}
 \captionsetup{justification=centering,margin=1cm}
 \caption{Амплитудный спектр гармонического сигнала вида $x(t) = \sin(2 \pi \cdot 10 t) + 0.2 \, \cos(2 \pi \cdot 2 t)$.}
@@ -255,6 +268,7 @@ x_d(t) = x(t) \cdot \text{Ш}(t, T_s).
 Прямоугольный периодический сигнал с длительностью импульса $T_i = 0.1$ c и периодом $T = 0.2$ c приведен на рисунке \ref{sqr_x}, а его спектр -- на рисунке \ref{sqr_s}. 
 
 \begin{figure}[H]
+\centering
 \includegraphics[width=0.95\textwidth]{sqr_x.eps}
 \captionsetup{justification=centering,margin=0cm}
 \caption{Прямоугольный периодический сигнал. $T_i = 0.1$ с, $T = 0.2$ с.}
@@ -262,7 +276,8 @@ x_d(t) = x(t) \cdot \text{Ш}(t, T_s).
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{sqr_s.eps}
+\centering
+\includegraphics[width=0.95\textwidth]{sqr_s.eps}
 \captionsetup{justification=centering,margin=1cm}
 \caption{Спектр прямоугольного периодического сигнала. $T_i = 0.1$ с, $T = 0.2$ с. }
 \label{sqr_s}
@@ -277,13 +292,15 @@ x_d(t) = x(t) \cdot \text{Ш}(t, T_s).
 Треугольный периодический сигнал с период $T = 0.2$ с приведен на рисунке \ref{trg_x}, его спектр приведен на рисунке \ref{trg_s}. Для данного случая справедливы те же рассуждения, что и для периодического прямоугольного сигнала.
 
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{trg_x.eps}
+\centering
+\includegraphics[width=0.95\textwidth]{trg_x.eps}
 \caption{Треугольный периодический сигнал. $T = 0.2$ с}
 \label{trg_x}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{trg_s.eps}
+\centering
+\includegraphics[width=0.95\textwidth]{trg_s.eps}
 \caption{Спектр треугольного периодического сигнала. $T = 0.2$ с}
 \label{trg_s}
 \end{figure}
@@ -311,7 +328,8 @@ r = F_D^{-1} [F_D(x(n))F_D(y(n))].
 
 Для сравнения представленных способов вычисления был выполнен расчет круговой корреляции с помощью преобразования Фурье и прямым методом. Результаты приведены на рисунке \ref{tm}.
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{time_measure.eps}
+\centering
+\includegraphics[width=0.95\textwidth]{time_measure.eps}
 \captionsetup{justification=centering,margin=1cm}
 \caption{Зависимость времени вычисления корреляции от длины входных последовательностей.}
 \label{tm}
@@ -326,7 +344,8 @@ r = F_D^{-1} [F_D(x(n))F_D(y(n))].
 Для заданного сигнала была вычислена корреляция с искомой последовательностью при смещении от 0 до 16. Полученный результат приведен на рисунке \ref{corr}.
 
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{corr.eps}
+\centering
+\includegraphics[width=0.95\textwidth]{corr.eps}
 \captionsetup{justification=centering,margin=1cm}
 \caption{Корреляция между сигналом и синхропосылкой.}
 \label{corr}
@@ -335,7 +354,8 @@ r = F_D^{-1} [F_D(x(n))F_D(y(n))].
 Корреляция максимальна при трех различных смещениях. В качестве синхропосылки принимается последовательность с минимальным смещением, таким образом полученный пакет имеет вид [01110000]. На рисунке \ref{corr_on_s} приведен сигнал, на котором цветом выделены синхропосылка и пакет данных.
 
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{corr_on_sig.eps}
+\centering
+\includegraphics[width=0.95\textwidth]{corr_on_sig.eps}
 \captionsetup{justification=centering,margin=1cm}
 \caption{Принимаемый сигнал.}
 \label{corr_on_s}
