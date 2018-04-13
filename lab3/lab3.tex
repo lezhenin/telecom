@@ -3,7 +3,7 @@
 \usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-\usepackage{graphicx}
+\usepackage[final]{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{chngcntr}
@@ -23,6 +23,8 @@
 \usepackage{mathtools}
 \usepackage{todonotes}
 \usepackage{listings}
+\usepackage{epstopdf}
+\usepackage{epsfig}
 \usepackage[makeroom]{cancel}
 
 \usetikzlibrary{arrows, petri, topaths}
@@ -91,6 +93,41 @@ Cгенерировать гармонический сигнал с шумом
 
 \section{Ход работы.}
 
+Преобразование непрерывных сигналов в линейных цепях с постоянными параметрами может быть описано с помощью линейных дифференциальных уравнений с постоянными коэффициентами.
+
+При прохождении гармонического сигнала через такую цепь меняется его амплитуда и фаза: 
+\begin{equation*}
+x(t) = A_x e^{j (2 \pi f t + \phi_x)} \rightarrow y(t) = A_y e^{j (2 \pi f t + \phi_y)}.
+\end{equation*} 
+Отношение выходного сигнала ко входному произвольной частоты называется частотной характеристикой (ЧХ):
+\begin{equation*}
+G(f) = \frac{A_y}{A_x} e^{j (\phi_y - \phi_x)} = |G(f)|e^{j \phi(f)}.
+\end{equation*}
+Модуль $|G(f)|$ называется амплитудно-частотная характеристика, $\phi(f)$ -- фазо-частотная характеристика.
+Реакция цепи $g(t)$ на единичный $\delta$-импульс называется импульсная характеристика (ИХ).
+
+При прохождении через цепь произвольного сигнала $x(t)$, спектр выходного сигнала $y(t)$ имеет вид
+\begin{equation*}
+Y(f) = X(f) G(f).
+\end{equation*}
+Согласно теореме о свертки выходной сигнал может быть найден как 
+\begin{equation*}
+y(t) = x(t) * g(t) = \int_{-\infty}^{t} x(t')g(t - t') dt'.
+\end{equation*}   
+
+Линейные цепи широко используются в качестве фильтров, они позволяют  изменять амплитуду гармоник на заданных частотах. 
+
+%todo
+
+Для демонстрации работы фильтров был смоделирован гармонический  сигнал $x(t) = sin(2\pi \, 5 t) - 0.5 cos(2\pi \, 2.5 t)$ с добавленным белым шумом. Исходный и зашумленные сигналы приведены на рисунке \ref{sig}.
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{./signal.eps}
+\captionsetup{justification=centering,margin=1cm}
+\caption{Обрабатываемый сигнал.}
+\label{sig}
+\end{figure}
 
 \section{Выводы.}
 
