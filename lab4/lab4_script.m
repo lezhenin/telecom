@@ -10,7 +10,7 @@ N = 512;
 Fs = 512;
 Fc = 48;
 F0 = 4;
-M = 0.9;
+M = 1;
 
 t = (1:N)/Fs;
 f = (-N/2:N/2-1) .* (Fs/N);
@@ -34,38 +34,50 @@ figure(figure_properties{:})
 hold on
 plot(t, y_amod, 'r', 'LineWidth', lw)
 plot(t, x, 'b', 'LineWidth', lw)
+set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
+plot(f, abs(s), 'b', 'LineWidth', lw)
 plot(f, abs(s_amod), 'r', 'LineWidth', lw)
-xlim([-Fs/2, Fs/2]);
+%xlim([-Fs/2, Fs/2]);
+xlim([-Fc*2, Fc*2]);
+set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
 plot(t, y_ssbm, 'r', 'LineWidth', lw)
 plot(t, x, 'b', 'LineWidth', lw)
+set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
+plot(f, abs(s), 'b', 'LineWidth', lw)
 plot(f, abs(s_ssbm), 'r', 'LineWidth', lw)
-xlim([-Fs/2, Fs/2]);
+%xlim([-Fs/2, Fs/2]);
+xlim([-Fc*2, Fc*2]);
+set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
 plot(t, y_ademod, 'b', 'LineWidth', lw)
 % plot(t, x, 'b', 'LineWidth', lw)
+set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
 plot(f, abs(s_ademod), 'b', 'LineWidth', lw)
 xlim([-Fs/2, Fs/2]);
+set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
 plot(t, y_ssbdemod, 'b', 'LineWidth', lw)
 % plot(t, x, 'b', 'LineWidth', lw)
+set(gca, 'FontSize', fs)
 
 figure(figure_properties{:})
 hold on
 plot(f, abs(s_ssbdemod), 'b', 'LineWidth', lw)
 xlim([-Fs/2, Fs/2]);
+set(gca, 'FontSize', fs)
